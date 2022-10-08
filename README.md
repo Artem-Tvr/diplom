@@ -303,6 +303,7 @@
 *Ответ:*
 
 - разработана Ansible роль для установки Prometheus, Alert Manager, Node Exporter и Grafana.
+- У Alert Manager настроены алерты в шаблоне роли `Ansible `  /ansible/roles/monitoring/alertmanager/templates/alerts.rules.yml
 
 ![20221008204439.png](assets/204439.png)
 
