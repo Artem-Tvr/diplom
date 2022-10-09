@@ -1,0 +1,21 @@
+---
+  - name: Installation monitoring service
+    debugger: on_failed
+    hosts: monitoring
+    become: yes
+    become_user: root
+    remote_user: ubuntu
+    roles:
+      - prometheus
+      - alertmanager
+      - grafana
+
+  - name: Installation node exporter
+    hosts: all
+    become: yes
+    become_user: root
+    remote_user: ubuntu
+    roles:
+      - node_exporter
+  
+

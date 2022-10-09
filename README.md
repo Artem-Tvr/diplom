@@ -108,6 +108,8 @@
 
 ![20221007213112.png](assets/213112.png)
 
+![20221009120147.png](assets/120147.png)
+
 ---
 
 ### Установка Nginx и LetsEncrypt
@@ -183,9 +185,9 @@
 
 ![20221007215240.png](assets/215240.png)
 
-- MySQL работает в режиме репликации Master/Slave:
-
 ![20220928163631.png](assets/163631.png)
+
+- MySQL работает в режиме репликации Master/Slave:
 
 ![20221001195941.png](assets/195941.png)
 
@@ -256,16 +258,47 @@
 
 ![20221004173101.png](assets/173101.png)
 
-
 **Gitlab Runner**
 
 - Runner разворачиваем на ВМ с помощью `ansible` роли. Для этого, предварительно, заходим в интерфейс Gitlab, создаем проект и в настройках проекта, в разделе CI/CD берем данные `gitlab_runner_coordinator_url` и `gitlab_runner_registration_token` и прописываем их в настройках роли и запускаем ее. После отработки роли видим, что настроках `runners` в нашем проекте, появился готовый к работе `runner`.
 
 ![20221004192847.png](assets/192847.png)
 
-
 ![20221004203541.png](assets/203541.png)
 
+- Для того чтобы при любом коммите в репозиторий с WordPress и создании тега (например, v1.0.0) происходил деплой на виртуальную машину, создаем новый Pipeline
+  (/GitLab Instance/Wordpres/Pipeline Editor) `.gitlab-ci.yml`
+
+```
+---
+before_script:
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - echo "$ssh_key" | tr -d '\r' | ssh-add -
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+
+stages:
+  - deploy
+
+deploy-job:
+  stage: deploy
+  only:
+    - tags
+  script:
+    - echo "Deploying application..."
+    - ssh -o StrictHostKeyChecking=no ubuntu@app.coberg.ru sudo chown ubuntu /var/www/wordpress/ -R
+    - rsync -rvz -e "ssh -o StrictHostKeyChecking=no" ./* ubuntu@app.coberg.ru:/var/www/wordpress
+    - ssh -o StrictHostKeyChecking=no ubuntu@app.coberg.ru rm -rf /var/www//var/www/wordpress/.git
+    - ssh -o StrictHostKeyChecking=no ubuntu@app.coberg.ru sudo chown www-data /var/www/wordpress -R
+
+
+```
+
+
+- в ***Variables*** добавляем ssh_key, для того чтобы наш Pipeline сработал.
+
+![20221009175300.png](assets/175300.png)
 
 ---
 
@@ -314,7 +347,6 @@
 ![20221006000601.png](assets/000601.png)
 
 ![20221005235338.png](assets/235338.png)
-
 
 ---
 

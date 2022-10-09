@@ -1,0 +1,8 @@
+#cloud-config
+users:
+  - name: ubuntu
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCrdj1Qc/0ntyBU1TvT5MrDkrzB7xEXejCW4pvqZce+zyNA0LIxc2DKikogIa3dGUMhPszEXK4D9EcixtXASqy3onlnVGq1YqkkK1RFDFCOG9Eas4K3njZpwlkLfVW5uX1CenR5MU8sgVPz36MZkekmRGh8U6FDlp+C+D0us1xfjWZSFZqSPK5v1qltOoIrwefO9I45gX9tSp0kvh2obzmd4piQUSpBgz/ztbQAfb1PpxAiKQ2SXJB1QUceYdBU4nJ48OjxR6yYfy1HmaNBF+cgjKOtlL9QXM3f6DBElRsRLHlL09lFVEtvuIf6DrpU9YFskbKwHBvUyey/ZS62IhA86ZAlA8482uqPGF2DKnOFEgk/xTsk7+gRCqOr5Vfdd7ZVHBaCsO2+916//8BCCJxPtJqTgg4pjwih6VyBtTxaq3AfZNo6Juu8WGATScstsnONbSaFOQQBH87+nJHmca0c2q9svAhZ1yc8Pm321hZddequPfcUESJW92+1E24A1kk= artem@MacBook-Pro-Artem.local

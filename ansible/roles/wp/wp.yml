@@ -1,0 +1,13 @@
+---
+- name: Installation Wordpress
+  hosts: wordpress
+  become: yes
+  become_user: root
+  remote_user: ubuntu
+  strategy: linear
+  roles:
+  - { role: openlitespeed, become: yes }
+  - { role: php, become: yes }
+  - { role: wordpress, become: yes }
+  vars_files:
+    - vars/default.yml

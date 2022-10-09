@@ -1,0 +1,23 @@
+    
+[nginx]
+coberg.ru ansible_host="62.84.115.226" ansible_ssh_private_key_file=~/.ssh/id_rsa ansible_ssh_user=ubuntu ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+    
+[db01]
+db01.coberg.ru ansible_host="192.168.101.12" ansible_ssh_private_key_file=~/.ssh/id_rsa ansible_ssh_user=ubuntu ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ControlMaster=auto -o ControlPersist=10m -o ProxyCommand="ssh -W %h:%p -q ubuntu@62.84.115.226"'
+
+[db02]
+db02.coberg.ru ansible_host="192.168.101.13" ansible_ssh_private_key_file=~/.ssh/id_rsa ansible_ssh_user=ubuntu ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ControlMaster=auto -o ControlPersist=10m -o ProxyCommand="ssh -W %h:%p -q ubuntu@62.84.115.226"'
+   
+[wordpress]
+app.coberg.ru ansible_host="192.168.101.14" ansible_ssh_private_key_file=~/.ssh/id_rsa ansible_ssh_user=ubuntu ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ControlMaster=auto -o ControlPersist=10m -o ProxyCommand="ssh -W %h:%p -q ubuntu@62.84.115.226"'
+
+[gitlab]
+gitlab.coberg.ru ansible_host="192.168.101.15" ansible_ssh_private_key_file=~/.ssh/id_rsa ansible_ssh_user=ubuntu ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ControlMaster=auto -o ControlPersist=10m -o ProxyCommand="ssh -W %h:%p -q ubuntu@62.84.115.226"'
+
+[runner]
+runner.coberg.ru ansible_host="192.168.101.16" ansible_ssh_private_key_file=~/.ssh/id_rsa ansible_ssh_user=ubuntu ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ControlMaster=auto -o ControlPersist=10m -o ProxyCommand="ssh -W %h:%p -q ubuntu@62.84.115.226"'
+
+[monitoring]
+monitoring.coberg.ru ansible_host="192.168.101.17" ansible_ssh_private_key_file=~/.ssh/id_rsa ansible_ssh_user=ubuntu ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ControlMaster=auto -o ControlPersist=10m -o ProxyCommand="ssh -W %h:%p -q ubuntu@62.84.115.226"'
+
+

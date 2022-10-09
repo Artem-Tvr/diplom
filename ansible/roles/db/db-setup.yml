@@ -1,0 +1,17 @@
+---
+  - name: Setup master
+    hosts: db01
+    become: yes
+    become_user: root
+    remote_user: ubuntu
+    roles:
+      - db01-master
+
+  - name: Setup slave
+    hosts: db02
+    become: yes
+    become_user: root
+    remote_user: ubuntu
+    roles:
+      - db02-slave
+

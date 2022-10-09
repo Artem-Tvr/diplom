@@ -1,0 +1,8 @@
+---
+  - name: Installation nginx and revproxy with TLS
+    hosts: nginx
+    become: yes
+    become_user: root
+    remote_user: ubuntu
+    roles:
+      - nginx
