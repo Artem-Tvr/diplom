@@ -26,53 +26,53 @@ resource "null_resource" "clean_known_hosts" {
   ]
 }
 
-# resource "null_resource" "nginx" {
-#   provisioner "local-exec" {
-#     command = "ANSIBLE_FORCE_COLOR=1 ansible-playbook -i /Users/artem/DevOps/Diplom/code/ansible/inventory.yml /Users/artem/DevOps/Diplom/code/ansible/roles/nginx.yml"
-#   }
+ resource "null_resource" "nginx" {
+   provisioner "local-exec" {
+     command = "ANSIBLE_FORCE_COLOR=1 ansible-playbook -i /Users/artem/DevOps/Diplom/code/ansible/inventory.yml /Users/artem/DevOps/Diplom/code/ansible/roles/nginx.yml"
+   }
 
-#   depends_on = [
-#     null_resource.clean_known_hosts
-#   ]
-# }
+   depends_on = [
+     null_resource.clean_known_hosts
+   ]
+ }
 
-# resource "null_resource" "db" {
-#   provisioner "local-exec" {
-#     command = "ANSIBLE_FORCE_COLOR=1 ansible-playbook -i /Users/artem/DevOps/Diplom/code/ansible/inventory.yml /Users/artem/DevOps/Diplom/code/ansible/roles/db/db-setup.yml"
-#   }
+ resource "null_resource" "db" {
+   provisioner "local-exec" {
+     command = "ANSIBLE_FORCE_COLOR=1 ansible-playbook -i /Users/artem/DevOps/Diplom/code/ansible/inventory.yml /Users/artem/DevOps/Diplom/code/ansible/roles/db/db-setup.yml"
+   }
 
-#  depends_on = [
-#     null_resource.nginx
-#   ]
-# }
+  depends_on = [
+     null_resource.nginx
+   ]
+ }
 
-# resource "null_resource" "wordpress" {
-#   provisioner "local-exec" {
-#     command = "ANSIBLE_FORCE_COLOR=1 ansible-playbook -i /Users/artem/DevOps/Diplom/code/ansible/inventory.yml /Users/artem/DevOps/Diplom/code/ansible/roles/openlitespeed_wordpress/playbook.yml"
-#   }
+ resource "null_resource" "wordpress" {
+   provisioner "local-exec" {
+     command = "ANSIBLE_FORCE_COLOR=1 ansible-playbook -i /Users/artem/DevOps/Diplom/code/ansible/inventory.yml /Users/artem/DevOps/Diplom/code/ansible/roles/openlitespeed_wordpress/playbook.yml"
+   }
 
-#  depends_on = [
-#     null_resource.db
-#   ]
-# }
+  depends_on = [
+     null_resource.db
+   ]
+ }
 
-# resource "null_resource" "runner" {
-#   provisioner "local-exec" {
-#     command = "ANSIBLE_FORCE_COLOR=1 ansible-playbook -i /Users/artem/DevOps/Diplom/code/ansible/inventory.yml /Users/artem/DevOps/Diplom/code/ansible/roles/gitlab.yml"
-#   }
+ resource "null_resource" "runner" {
+   provisioner "local-exec" {
+     command = "ANSIBLE_FORCE_COLOR=1 ansible-playbook -i /Users/artem/DevOps/Diplom/code/ansible/inventory.yml /Users/artem/DevOps/Diplom/code/ansible/roles/gitlab.yml"
+   }
 
-#  depends_on = [
-#     null_resource.wordpress
-#   ]
-# }
+  depends_on = [
+     null_resource.wordpress
+   ]
+ }
 
-# resource "null_resource" "monitoring" {
-#   provisioner "local-exec" {
-#     command = "ANSIBLE_FORCE_COLOR=1 ansible-playbook -i /Users/artem/DevOps/Diplom/code/ansible/inventory.yml /Users/artem/DevOps/Diplom/code/ansible/roles/monitoring/monitoring.yml"
-#   }
+ resource "null_resource" "monitoring" {
+   provisioner "local-exec" {
+     command = "ANSIBLE_FORCE_COLOR=1 ansible-playbook -i /Users/artem/DevOps/Diplom/code/ansible/inventory.yml /Users/artem/DevOps/Diplom/code/ansible/roles/monitoring/monitoring.yml"
+   }
 
-#  depends_on = [
-#     null_resource.runner
-#   ]
-# }
+  depends_on = [
+     null_resource.runner
+   ]
+ }
 
